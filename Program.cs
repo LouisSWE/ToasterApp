@@ -1,7 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿
 using Toaster;
-using Toaster = Toaster.Toaster;
 //Die in der Konsole eingegebne Farbe
 String? farbe = String.Empty;
 

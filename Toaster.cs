@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Toaster
+﻿namespace Toaster
 {
-    public class Toaster
-    {
-      public Toaster(String? farbe, Int32 schaechte)
-      {
-        Farbe=farbe;
-        Schaechte=schaechte;
+  public class Toaster
+  {
+    #region Constructors
 
-      }
+    /// <summary>
+    /// Klasse die Attribute und FUntkionen eines Toasters represäntiert.
+    /// </summary>
+    /// <param name="farbe"></param>
+    /// <param name="schaechte"></param>
+    public Toaster(String? farbe, Int32 schaechte)
+    {
+      Farbe = farbe;
+      Schaechte = schaechte;
+    }
+
+    #endregion
+
+    #region Public Properties
 
     /// <summary>
     /// Farbe des Toasters.
@@ -34,27 +37,31 @@ namespace Toaster
     /// <summary>
     /// Der Zustand des Toasts.
     /// </summary>
-    public Int32 Zeit { get; set; }
+    public String ToastZustand { get; set; }
 
     /// <summary>
     /// Der Zustand des Toasts.
     /// </summary>
-    public String ToastZustand { get; set; }
+    public Int32 Zeit { get; set; }
 
-    public Boolean ToastReintun(Int32 toastanzahl)
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Funktion zum auswerfen des Toastes, dazu wird dabei dem Benutzer der Zustand seines Toasters gegeben.
+    /// </summary>
+    /// <returns></returns>
+    public String Toastauswerfen()
     {
-      if (toastanzahl > Schaechte)
-      {
-        Console.WriteLine("Sorry so viele Toasts passen leider nicht in den Toaster");
-        return false;
-      }
-      else
-      {
-        Toastanzahl = toastanzahl;
-        Console.WriteLine("Du hast nun " + Toastanzahl + "Toast im Toaster.");
-      }
-      return true;
+      Console.WriteLine("\"Du siehst das Toast rauskommen\" und es ist " + ToastZustand);
+      return ToastZustand;
     }
+
+    /// <summary>
+    /// Funktion die den Prozess des Toastens beschreibt. Erhalten tut man nach diesem Prozess den Zustand des Toasts.
+    /// </summary>
+    /// <returns></returns>
     public String Toasten()
     {
       if (Zeit == 0)
@@ -81,17 +88,36 @@ namespace Toaster
       return ToastZustand;
     }
 
+    /// <summary>
+    /// Funktion mit der sich die Zeit einstellen lässt wie lange der Toastvorgang gehen soll.
+    /// </summary>
+    /// <param name="zeit"></param>
     public Int32 ToasterZeitEinstellen(Int32 zeit)
     {
       Zeit = zeit;
       Console.WriteLine("Alles klar der Vorgang wird nun " + Zeit + " Sekunden gehen");
       return Zeit;
     }
-    public String Toastauswerfen()
+
+    /// <summary>
+    /// Funktion um eine gewollte Anzahl an Toasts in den Toaster zutun. Sollte die Anzahl der Toasts jedoch die Anzahl an
+    /// Schächten überschreiten funktioniert dies nicht und eine entsprechende Meldung wird ausgegeben.
+    /// </summary>
+    /// <param name="toastanzahl"></param>
+    /// <returns></returns>
+    public Boolean ToastReintun(Int32 toastanzahl)
     {
-      Console.WriteLine("\"Du siehst das Toast rauskommen\" und es ist " + ToastZustand);
-      return ToastZustand;
+      if (toastanzahl > Schaechte)
+      {
+        Console.WriteLine("Sorry so viele Toasts passen leider nicht in den Toaster");
+        return false;
+      }
+
+      Toastanzahl = toastanzahl;
+      Console.WriteLine("Du hast nun " + Toastanzahl + "Toast im Toaster.");
+      return true;
     }
 
-    }
+    #endregion
+  }
 }
