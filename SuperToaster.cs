@@ -20,7 +20,6 @@ namespace Toaster
     /// <summary>
     /// Farbe des Toasters.
     /// </summary>
-    [NotNull]
     public new String? Farbe { get; set; }
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace Toaster
     /// <summary>
     /// Die Temperatur des Toasters.
     /// </summary>
-    public Double Temperatur { get; set; }
+    public Int32 Temperatur => Zeit * 3;
 
     /// <summary>
     /// Der Temperatursensor.
@@ -72,7 +71,7 @@ namespace Toaster
     /// der Toaster zu lange laufen und die Temperatur zu hoch werden wird der Vorgang abgebrochen.
     /// </summary>
     /// <returns></returns>
-    public new String Toasten()
+    public new String? Toasten()
     {
       if (Zeit == 0)
       {
@@ -92,10 +91,10 @@ namespace Toaster
         ToastZustand = "Verbrannt";
       }
 
-      Temperatur = Zeit * 3;
-      Temperatur = Temperatursensor;
 
-      if (Temperatursensor == 500)
+      Temperatursensor = Temperatur;
+
+      if (Temperatursensor > 500)
       {
         Console.WriteLine("WARNUNG!!!! Der Supertoaster ist zu heiß. Zur Sicherheit wird der Vorgang abgebrochen!!");
         return null;
