@@ -19,7 +19,7 @@ if (toasterAuswahl == 1)
   schaechte = Convert.ToInt32(Console.ReadLine());
 
   //Erstellung des eigenen Toaster Objektes
-  var meinToaster = new global::Toaster.Toaster(farbe, schaechte);
+  var meinToaster = new Toaster.Toaster(farbe, schaechte);
   Console.WriteLine("Alles klar, dein Toaster sieht nun wie folgt aus: " + "Farbe:" + meinToaster.Farbe + " Schächte:" + meinToaster.Schaechte);
 
   Console.WriteLine("Möchstest du mit deinem Toaster toasten?");
